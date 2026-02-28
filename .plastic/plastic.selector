@@ -1,0 +1,4 @@
+repository "Philosopher-s_Stone/Philosopher-s_Stone@2473985456801@cloud"
+  path "/"
+    br "/main"
+    co "/main"
