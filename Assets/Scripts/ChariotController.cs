@@ -7,8 +7,6 @@ public class ChariotController : MonoBehaviour
     float maxSpeed = 10;
     [SerializeField]
     float maxAcceleration = 10;
-    [SerializeField]
-    float jerk = 1;
     Vector3 currentAcceleration = Vector3.zero;
 
     Rigidbody rb;
@@ -28,12 +26,12 @@ public class ChariotController : MonoBehaviour
 
     public void Move(Vector2 dir)
     {
-        if (rb.linearVelocity.magnitude <= maxSpeed)
+        dir = dir.normalized;
+        Vector3 currentAcceleration = new(dir.x * maxAcceleration, 0f, dir.y * maxAcceleration);
+        rb.AddForce(currentAcceleration, ForceMode.Acceleration);
+        if (rb.linearVelocity.magnitude > maxSpeed)
         {
-            currentAcceleration = new(dir.x * maxAcceleration, 0f, dir.y * maxAcceleration);
-            rb.AddForce(currentAcceleration, ForceMode.Acceleration);
+            rb.linearVelocity = rb.linearVelocity.normalized * maxSpeed;
         }
-
-        Debug.Log(rb.linearVelocity.magnitude);
     }
 }
