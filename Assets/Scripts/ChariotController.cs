@@ -8,8 +8,8 @@ public class ChariotController : MonoBehaviour
     [SerializeField]
     float maxAcceleration = 10;
     [SerializeField]
-    float maxJerk = 10;
-    float currentAcceleration = 0;
+    float jerk = 1;
+    Vector3 currentAcceleration = Vector3.zero;
 
     Rigidbody rb;
     private void Awake() {
@@ -28,7 +28,12 @@ public class ChariotController : MonoBehaviour
 
     public void Move(Vector2 dir)
     {
-        Vector3 newDir = new (dir.x, 0f, dir.y);
-        rb.AddForce(newDir * maxSpeed, ForceMode.Acceleration);
+        if (rb.linearVelocity.magnitude <= maxSpeed)
+        {
+            currentAcceleration = new(dir.x * maxAcceleration, 0f, dir.y * maxAcceleration);
+            rb.AddForce(currentAcceleration, ForceMode.Acceleration);
+        }
+
+        Debug.Log(rb.linearVelocity.magnitude);
     }
 }
