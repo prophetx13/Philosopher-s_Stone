@@ -23,7 +23,9 @@ public class HandManager : MonoBehaviour
     [SerializeField] private KeyCode drawTestKey = KeyCode.Space;     
     [SerializeField] private KeyCode prevCardKey = KeyCode.Q;
     [SerializeField] private KeyCode nextCardKey = KeyCode.E;
-    [SerializeField] private KeyCode activateKey = KeyCode.F;   
+    [SerializeField] private KeyCode activateKey = KeyCode.F;
+
+    [SerializeField] private HandEffectLabel effectLabel;
 
     private readonly List<GameObject> handCards = new();
     private int selectedIndex = -1;
@@ -191,7 +193,29 @@ private void ActivateSelectedCard()
             t.DOMove(targetPos, tweenTime).SetEase(Ease.OutQuad);
             t.DORotateQuaternion(rot, tweenTime).SetEase(Ease.OutQuad);
             t.DOScale(targetScale, tweenTime).SetEase(Ease.OutQuad);
+            UpdateEffectLabel();
         }
+    }
+
+    private void UpdateEffectLabel()
+    {
+        if (effectLabel == null) return;
+
+        GameObject selected = GetSelectedCard();
+        if (selected == null)
+        {
+            effectLabel.Hide();
+            return;
+        }
+
+        if (!selected.TryGetComponent<CardView>(out var view) || view.Data == null)
+        {
+            effectLabel.Hide();
+            return;
+        }
+
+        effectLabel.SetTarget(selected.transform);
+        effectLabel.Show(view.EffectText); // or $"{view.EffectText}\n<size=70%>{view.EffectDetails}</size>"
     }
 
     // Optional external access
