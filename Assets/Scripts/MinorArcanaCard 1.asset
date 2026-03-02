@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0acb24d5502f9984590c12d49f889334, type: 3}
+  m_Name: MinorArcanaCard 1
+  m_EditorClassIdentifier: Assembly-CSharp::MinorArcanaCard
+  cardName: 5
+  suit: 2
+  rank: 1
+  targetType: 0
+  duration: 0
+  cooldown: 0
+  effect: {fileID: 0}
+  cardArt: {fileID: 21300000, guid: 30b25a0d31bf8394fb8086cdb54c7387, type: 3}
+  suitIcon: {fileID: 0}
+  cardBack: {fileID: 0}
+  frame: {fileID: 0}
