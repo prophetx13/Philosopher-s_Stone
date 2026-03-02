@@ -10,13 +10,11 @@ public class ChariotController : MonoBehaviour
     float maxSpeed = 10;
     [SerializeField]
     float maxAcceleration = 10;
-
     float originalMaxSpeed = 10;
     float originalMaxAcceleration = 10;
-
     public float CurrentSpeed {get; private set;}
-
     Vector3 currentAcceleration = Vector3.zero;
+    Rigidbody rb;
 
     [Header("Boost Settings")]
     [SerializeField]
@@ -37,12 +35,21 @@ public class ChariotController : MonoBehaviour
     [Min(0.01f)]
     float respawnDuration = 1f;
     bool ignoreChariotCollision = false;
-
     Vector3 lastCheckpointPosition = Vector3.zero;
+    
+    [Header("Animations")]
+    [SerializeField]
+    [Min(0.01f)]
+    float distFromHorse = 1.5f;
+    Animator chariotAnimator;
+    Animator horseAnimator;
 
-    Rigidbody rb;
+    [SerializeField]
+    bool isMoveDisabled = false;
     private void Awake() {
         rb = GetComponent<Rigidbody>();
+        chariotAnimator = GetComponent<Animator>();
+        horseAnimator = transform.GetChild(0).GetComponent<Animator>();
     }
     
     void Start()
@@ -58,13 +65,40 @@ public class ChariotController : MonoBehaviour
 
     public void Move(Vector2 dir)
     {
+        if (isMoveDisabled) return;
+
         dir = dir.normalized;
+        ProcessAnimation(dir);
         currentAcceleration = new(dir.x * maxAcceleration, 0f, dir.y * maxAcceleration);
         rb.AddForce(currentAcceleration, ForceMode.Acceleration);
         if (rb.linearVelocity.magnitude > maxSpeed)
         {
             rb.linearVelocity = rb.linearVelocity.normalized * maxSpeed;
         }
+    }
+
+    public void ToggleMove()
+    {
+        ToggleMove(!isMoveDisabled);
+    }
+
+    public void ToggleMove(bool b)
+    {
+        isMoveDisabled = b;
+    }
+
+    private void ProcessAnimation(Vector2 dir)
+    {
+        if (chariotAnimator == null) return;
+        chariotAnimator.SetFloat("XDir", dir.x);
+        chariotAnimator.SetFloat("YDir", dir.y);
+
+        horseAnimator.SetFloat("XDir", dir.x);
+        horseAnimator.SetFloat("YDir", dir.y);
+        
+        Vector3 newHorsePos = new Vector3(dir.x, 0f, dir.y) * distFromHorse;
+        if (dir == Vector2.zero) newHorsePos = new Vector3(1f, 0f, 0) * distFromHorse;
+        horseAnimator.transform.localPosition = newHorsePos;
     }
 
     public void Boost()
@@ -114,7 +148,6 @@ public class ChariotController : MonoBehaviour
             lastCheckpointPosition = other.transform.position;
         }
     }
-
 
     private void ProcessExplosion(ChariotController otherChariot)
     {
