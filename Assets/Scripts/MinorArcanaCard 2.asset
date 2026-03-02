@@ -23,3 +23,5 @@ MonoBehaviour:
   suitIcon: {fileID: 0}
   cardBack: {fileID: 0}
   frame: {fileID: 0}
+  effectText: Immunity
+  effectDetails: 
