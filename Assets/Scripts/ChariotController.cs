@@ -36,6 +36,7 @@ public class ChariotController : MonoBehaviour
     [SerializeField]
     [Min(0.01f)]
     float respawnDuration = 1f;
+    bool ignoreChariotCollision = false;
 
     Vector3 lastCheckpointPosition = Vector3.zero;
 
@@ -100,7 +101,7 @@ public class ChariotController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Chariot"))
+        if (collision.gameObject.CompareTag("Chariot") && !ignoreChariotCollision)
         {
             ProcessExplosion(collision.gameObject.GetComponent<ChariotController>());
         }
@@ -132,6 +133,8 @@ public class ChariotController : MonoBehaviour
     {
         Vector3 newPos = new (lastCheckpointPosition.x, 3f, lastCheckpointPosition.z);
         transform.position = newPos;
+        ignoreChariotCollision = true;
         yield return new WaitForSeconds(respawnDuration);
+        ignoreChariotCollision = false;
     }
 }
