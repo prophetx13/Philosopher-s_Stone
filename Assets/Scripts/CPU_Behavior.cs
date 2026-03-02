@@ -49,7 +49,7 @@ public class CPU_Behavior : MonoBehaviour
     {
         int maxKnots = guideLine.Count;
         Vector3 targetKnotPos = (Vector3)guideLine[targetKnotIndex].Position;
-        Vector3 nextTargetKnotPos = (Vector3)guideLine[(targetKnotIndex+1) % maxKnots].Position;
+        Vector3 nextTargetKnotPos = (Vector3)guideLine[(targetKnotIndex + 1) % maxKnots].Position;
         Debug.DrawLine(transform.position, nextTargetKnotPos, Color.yellow, numFramesForUpdate * Time.fixedDeltaTime);
         float distToTargetKnot = Vector3.Distance(transform.position, targetKnotPos);
         float distToNextKnot = Vector3.Distance(transform.position, nextTargetKnotPos);
