@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Horse_Back
+  m_Name: HorseE2_Front
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,7 +21,7 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: 2100000, guid: b5c0f80768c393a40963f4301098d7a4, type: 2}
+      value: {fileID: 2100000, guid: d08fdd2655829e5408fef5012327b6b1, type: 2}
     attribute: 'm_Materials.Array.data[0]'
     path: 
     classID: 23
@@ -44,7 +44,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: 2100000, guid: b5c0f80768c393a40963f4301098d7a4, type: 2}
+    - {fileID: 2100000, guid: d08fdd2655829e5408fef5012327b6b1, type: 2}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}

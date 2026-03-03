@@ -8,4 +8,12 @@ AnimatorOverrideController:
   m_PrefabAsset: {fileID: 0}
   m_Name: Horse 2
   m_Controller: {fileID: 9100000, guid: 714b4149de7076e478c291e399b060c4, type: 2}
-  m_Clips: []
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 89564396a49e7c240a1449f9fbfd3c54, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 1510e8fc93624fb49b6f07abc481df05, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: e6efdf800e86d5d4b877c95e372aa277, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 3cda87cc18028d34e9c0a885ac7f5b2a, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: eb503ad4365936b499cd40a11ab1f3d6, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: b366c9ce67315254f933fcde740c1f43, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 6b083ed4b88d4ed46a756502d53b5822, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: a787b240e4ca27c4c8a668456fdb4fb7, type: 2}

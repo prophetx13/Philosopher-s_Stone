@@ -22,7 +22,7 @@ public class CPU_Behavior : MonoBehaviour
     Vector2 newDir = Vector2.zero;
     int frameCounter = 0;
 
-    float unstuckCheckInterval = 10f;
+    float unstuckCheckInterval = 20f;
     Vector3 lastPos = Vector3.zero;
 
     private void Awake() {
@@ -38,7 +38,7 @@ public class CPU_Behavior : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if ((int)Time.time % unstuckCheckInterval == 0) Unstuck();
+        if (((int)Time.time + 1) % unstuckCheckInterval == 0) Unstuck();
 
         if (frameCounter % numFramesForUpdate == 0) UpdateNewDir();
         chariotController.Move(newDir);
