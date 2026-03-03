@@ -9,11 +9,6 @@ public class CPU_Behavior : MonoBehaviour
     float acceptableDistance = 5;
 
     [SerializeField]
-    [Min(0.001f)]
-    [Tooltip("How close the CPU can be to the next Knot, to skip the current Knot")]
-    float skipRange = 5;
-
-    [SerializeField]
     [Min(0)]
     [Tooltip("How often the CPU will update it's direction")]
     int numFramesForUpdate = 1;
@@ -27,6 +22,9 @@ public class CPU_Behavior : MonoBehaviour
     Vector2 newDir = Vector2.zero;
     int frameCounter = 0;
 
+    float unstuckCheckInterval = 10f;
+    Vector3 lastPos = Vector3.zero;
+
     private void Awake() {
         chariotController = GetComponent<ChariotController>();
         guideLine = guideLineContainer.Spline;
@@ -34,12 +32,14 @@ public class CPU_Behavior : MonoBehaviour
 
     void Start()
     {
-        
+        lastPos = transform.position;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        if ((int)Time.time % unstuckCheckInterval == 0) Unstuck();
+
         if (frameCounter % numFramesForUpdate == 0) UpdateNewDir();
         chariotController.Move(newDir);
         frameCounter++;
@@ -63,4 +63,13 @@ public class CPU_Behavior : MonoBehaviour
         newDir = new (temp.x, temp.z);
         Debug.DrawLine(transform.position, targetKnotPos, Color.purple, numFramesForUpdate * Time.fixedDeltaTime);
     }
+
+    void Unstuck()
+    {
+        if (Vector3.Distance(transform.position, lastPos) < 1f)
+        {
+            chariotController.Death();
+        }
+    }
+
 }

@@ -61,6 +61,7 @@ public class ChariotController : MonoBehaviour
     {
         originalMaxSpeed = maxSpeed;
         originalMaxAcceleration = maxAcceleration;
+        lastCheckpointPosition = new Vector3(229.119995f,6f,-50f);
     }
 
     void Update()
@@ -151,6 +152,7 @@ public class ChariotController : MonoBehaviour
         {
             if (currentLap >= numLapsToComplete)
             {
+                RaceManager.Instance.DisplayWinCanvas();
                 Debug.Log(name + " has won!");
             }
             currentLap++;
@@ -171,14 +173,14 @@ public class ChariotController : MonoBehaviour
         }
     }
 
-    private void Death()
+    public void Death()
     {
         StartCoroutine(ProcessDeath());
     }
 
     private IEnumerator ProcessDeath()
     {
-        Vector3 newPos = new (lastCheckpointPosition.x, 3f, lastCheckpointPosition.z);
+        Vector3 newPos = new (lastCheckpointPosition.x, 5f, lastCheckpointPosition.z);
         transform.position = newPos;
         ignoreChariotCollision = true;
         yield return new WaitForSeconds(respawnDuration);

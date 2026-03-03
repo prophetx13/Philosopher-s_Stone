@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class RaceManager : MonoBehaviour
 {
+    public static RaceManager Instance {get; private set;}
     [SerializeField]
     float startDelay = 5f;
     [SerializeField]
@@ -13,9 +14,24 @@ public class RaceManager : MonoBehaviour
     public int NumLapsToComplete = 1;
 
     [Header("Win Lose Canvas")]
-    
+    [SerializeField]
+    GameObject winCanvas;
 
     List<ChariotController> list_cpuCC = new();
+
+
+
+    private void Awake() {
+        if (Instance != null && Instance != this) 
+        { 
+            Destroy(this); 
+        } 
+        else 
+        { 
+            Instance = this; 
+        } 
+    }
+
     void Start()
     {
         cpuCC_Container.GetComponentsInChildren<ChariotController>(list_cpuCC);
@@ -43,8 +59,8 @@ public class RaceManager : MonoBehaviour
         }
     }
 
-    void DisplayWinCanvas()
+    public void DisplayWinCanvas()
     {
-        
+        winCanvas.SetActive(true);
     }
 }
