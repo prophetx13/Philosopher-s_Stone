@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Chariot
   - Checkpoint
+  - FinishLine
+  - EnableFinishLine
   layers:
   - Default
   - TransparentFX

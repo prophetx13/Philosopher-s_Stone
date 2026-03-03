@@ -44,8 +44,13 @@ public class ChariotController : MonoBehaviour
     Animator chariotAnimator;
     Animator horseAnimator;
 
+    [Header("Race Settings")]
     [SerializeField]
     bool isMoveDisabled = false;
+    int currentLap = 0;
+    public int numLapsToComplete = 2;
+    bool canCrossFinishLine = true;
+
     private void Awake() {
         rb = GetComponent<Rigidbody>();
         chariotAnimator = GetComponent<Animator>();
@@ -77,12 +82,7 @@ public class ChariotController : MonoBehaviour
         }
     }
 
-    public void ToggleMove()
-    {
-        ToggleMove(!isMoveDisabled);
-    }
-
-    public void ToggleMove(bool b)
+    public void DisableMove(bool b)
     {
         isMoveDisabled = b;
     }
@@ -142,10 +142,24 @@ public class ChariotController : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other) {
-        Debug.Log("Trigger: " + other);
         if (other.CompareTag("Checkpoint"))
         {
             lastCheckpointPosition = other.transform.position;
+        }
+
+        if (other.CompareTag("FinishLine") && canCrossFinishLine)
+        {
+            if (currentLap >= numLapsToComplete)
+            {
+                Debug.Log(name + " has won!");
+            }
+            currentLap++;
+            canCrossFinishLine = false;
+        }
+
+        if (other.CompareTag("EnableFinishLine"))
+        {
+            canCrossFinishLine = true;
         }
     }
 

@@ -1,5 +1,7 @@
 ﻿<Solution>
   <Project Path="Unity.Timeline.csproj" />
+  <Project Path="Xsolla.csproj" />
+  <Project Path="Xsolla.Samples.csproj" />
   <Project Path="Unity.RenderPipelines.GPUDriven.Runtime.csproj" />
   <Project Path="Unity.PlasticSCM.Editor.csproj" />
   <Project Path="Unity.ShaderGraph.Editor.csproj" />
@@ -10,6 +12,7 @@
   <Project Path="Unity.Multiplayer.Center.Editor.csproj" />
   <Project Path="Unity.RenderPipelines.Core.Editor.csproj" />
   <Project Path="UnityEngine.UI.csproj" />
+  <Project Path="Xsolla.Editor.csproj" />
   <Project Path="Unity.RenderPipelines.Universal.2D.Runtime.csproj" />
   <Project Path="Unity.Collections.csproj" />
   <Project Path="Unity.VisualScripting.Core.Editor.csproj" />
@@ -28,6 +31,7 @@
   <Project Path="UnityEditor.TestRunner.csproj" />
   <Project Path="Unity.VisualScripting.Core.csproj" />
   <Project Path="Unity.RenderPipelines.Universal.Runtime.csproj" />
+  <Project Path="XsollaBrowser.csproj" />
   <Project Path="Unity.UnifiedRayTracing.Runtime.csproj" />
   <Project Path="Unity.AI.Navigation.Editor.ConversionSystem.csproj" />
   <Project Path="Unity.VisualScripting.State.Editor.csproj" />
@@ -49,6 +53,7 @@
   <Project Path="Unity.AI.Navigation.Editor.csproj" />
   <Project Path="Unity.Multiplayer.Center.Common.csproj" />
   <Project Path="glTFast.Documentation.Examples.csproj" />
+  <Project Path="XsollaBrowser.Editor.csproj" />
   <Project Path="Unity.InputSystem.ForUI.csproj" />
   <Project Path="Unity.AI.Navigation.csproj" />
   <Project Path="Unity.Collections.CodeGen.csproj" />
@@ -60,9 +65,9 @@
   <Project Path="Unity.InputSystem.TestFramework.csproj" />
   <Project Path="Unity.ShaderGraph.Utilities.csproj" />
   <Project Path="Unity.VisualScripting.Shared.Editor.csproj" />
+  <Project Path="Assembly-CSharp.csproj" />
   <Project Path="Unity.CollabProxy.Editor.csproj" />
   <Project Path="Unity.RenderPipeline.Universal.ShaderLibrary.csproj" />
-  <Project Path="Assembly-CSharp.csproj" />
   <Project Path="glTFast.dots.csproj" />
   <Project Path="Unity.InputSystem.DocCodeSamples.csproj" />
   <Project Path="Unity.RenderPipelines.Universal.Shaders.csproj" />
