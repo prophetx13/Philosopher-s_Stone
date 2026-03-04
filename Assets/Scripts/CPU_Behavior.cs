@@ -22,7 +22,7 @@ public class CPU_Behavior : MonoBehaviour
     Vector2 newDir = Vector2.zero;
     int frameCounter = 0;
 
-    float unstuckCheckInterval = 20f;
+    float unstuckCheckInterval = 15f;
     Vector3 lastPos = Vector3.zero;
 
     private void Awake() {
@@ -69,7 +69,21 @@ public class CPU_Behavior : MonoBehaviour
         if (Vector3.Distance(transform.position, lastPos) < 1f)
         {
             chariotController.Death();
+            SetTargetKnotToNearest();
         }
     }
 
+    public void SetTargetKnotToNearest()
+    {
+        int newTargetIndex = 0;
+        float smallestDistance = 1000000000000000f;
+        for (int i = 0; i < guideLine.Count; i++)
+        {
+            if (Vector3.Distance(guideLine[i].Position, transform.position) < smallestDistance)
+            {
+                newTargetIndex = i;
+            }
+        }
+        targetKnotIndex = newTargetIndex;
+    }
 }

@@ -51,10 +51,14 @@ public class ChariotController : MonoBehaviour
     public int numLapsToComplete = 2;
     bool canCrossFinishLine = true;
 
+    // [Header("AI settings")]
+    // CPU_Behavior cpu;
+
     private void Awake() {
         rb = GetComponent<Rigidbody>();
         chariotAnimator = GetComponent<Animator>();
         horseAnimator = transform.GetChild(0).GetComponent<Animator>();
+        // cpu = GetComponent<CPU_Behavior>();
     }
     
     void Start()
@@ -152,7 +156,8 @@ public class ChariotController : MonoBehaviour
         {
             if (currentLap >= numLapsToComplete)
             {
-                RaceManager.Instance.DisplayWinCanvas();
+                PlayerController pc = GetComponent<PlayerController>();
+                if (pc) RaceManager.Instance.DisplayWinCanvas();
                 Debug.Log(name + " has won!");
             }
             currentLap++;
@@ -185,5 +190,10 @@ public class ChariotController : MonoBehaviour
         ignoreChariotCollision = true;
         yield return new WaitForSeconds(respawnDuration);
         ignoreChariotCollision = false;
+
+        // if (cpu != null)
+        // {
+        //     cpu.SetTargetKnotToNearest();
+        // }
     }
 }

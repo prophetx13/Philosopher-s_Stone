@@ -19,8 +19,6 @@ public class RaceManager : MonoBehaviour
 
     List<ChariotController> list_cpuCC = new();
 
-
-
     private void Awake() {
         if (Instance != null && Instance != this) 
         { 
@@ -57,6 +55,7 @@ public class RaceManager : MonoBehaviour
         {
             cpuCC.DisableMove(false);
         }
+
     }
 
     public void DisplayWinCanvas()
