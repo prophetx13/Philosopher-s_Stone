@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         chariotController.Move(inputs.Player.Move.ReadValue<Vector2>());
     }

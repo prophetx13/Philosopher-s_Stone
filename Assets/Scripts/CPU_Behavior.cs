@@ -25,6 +25,15 @@ public class CPU_Behavior : MonoBehaviour
     float unstuckCheckInterval = 15f;
     Vector3 lastPos = Vector3.zero;
 
+    [Header("Boost Chance")]
+    [SerializeField]
+    [Tooltip("How often it'll check to boost")]
+    int checkEvery_X_Seconds = 5;
+    [SerializeField]
+    [Range(0,100)]
+    [Tooltip("Percent Chance for boost")]
+    int boostChance = 20;
+
     private void Awake() {
         chariotController = GetComponent<ChariotController>();
         guideLine = guideLineContainer.Spline;
@@ -43,6 +52,11 @@ public class CPU_Behavior : MonoBehaviour
         if (frameCounter % numFramesForUpdate == 0) UpdateNewDir();
         chariotController.Move(newDir);
         frameCounter++;
+
+        if ((int)Time.time % checkEvery_X_Seconds == 0 && Random.Range(0,100) < boostChance)
+        {
+            chariotController.Boost();
+        }
     }
 
     void UpdateNewDir()

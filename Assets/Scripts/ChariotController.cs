@@ -135,6 +135,7 @@ public class ChariotController : MonoBehaviour
 
         maxAcceleration = originalMaxAcceleration;
         maxSpeed = originalMaxSpeed;
+        yield return new WaitForSeconds(boostDuration * 0.50f);
         isBoosting = false;
     }
 
